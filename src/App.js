@@ -1,24 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
 
+import React, {useEffect} from 'react';
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import Header from './containers/Header';
+import ProductListing from "./containers/ProductListing";
+import ProductDetails from "./Components/ProductDetails";
+import Register from './Register/Register';
+import Login from './Login/Login';
+import {useDispatch} from "react-redux";
+import {auth} from "./config/firebase";
+import {setUser} from "./Redux/action";
+import Checkout from './containers/Checkout/Checkout';
+import AddProduct from '../src/Pages/AddProduct';
+import ViewProduct from '../src/Pages/ViewProduct';
+import "./App.css";
 function App() {
+  let dispatch= useDispatch();
+  useEffect(()=>{
+    auth.onAuthStateChanged((authUser) =>{
+      if(authUser){
+        dispatch(setUser(authUser));
+      }
+      else{
+        dispatch(setUser(null));
+      }
+    })
+  },[dispatch]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   <>
+    <Router>
+   <Header />
+   <Routes>
+     <Route path="/" element={<ProductListing />} />
+     <Route path="/addproduct" element={<AddProduct />} />
+     <Route path="/viewproduct" element={<ViewProduct />} />
+     <Route path="/checkout" element={<Checkout />} />
+     <Route path="/product/:productId" element={<ProductDetails />} />
+     <Route path="/login" element={<Login />} />
+     <Route path="/register" element={<Register />} />
+     <Route> 404 Not Found!</Route>
+   </Routes>
+   </Router>
+   </>
   );
 }
 
