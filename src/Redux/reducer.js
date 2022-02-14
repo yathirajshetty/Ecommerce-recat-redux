@@ -15,7 +15,7 @@ const useReducers = (state = initialState, action) =>{
         const newCart= [...state.cart, action.payload]
         return{
             ...state,
-            // cart: newCart,
+            cart: newCart,
             loading:false,
         };
         case types.REMOVE_CART:
@@ -40,12 +40,12 @@ const useReducers = (state = initialState, action) =>{
                     products: action.payload,
                     loading: false,
                 };
-        case types.GET_CATEGORYPRODUCT:
-                return{
-                    ...state,
-                    product: action.payload,
-                    loading: false,
-                };
+        // case types.GET_CATEGORYPRODUCT:
+        //         return{
+        //             ...state,
+        //             product: action.payload,
+        //             loading: false,
+        //         };
 
         case types.SET_PRODUCTS:
                 return {

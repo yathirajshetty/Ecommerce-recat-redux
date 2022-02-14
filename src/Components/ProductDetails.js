@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { getSingleProductInitiate,addCart} from '../Redux/action';
 const ProductDetails = () => {
   let dispatch = useDispatch();
-  const { product } = useSelector((state) => state.data);
+  const {product} = useSelector((state) => state.data);
   const { productId } = useParams();
 //   useEffect(() => {
 //     dispatch( getSingleProductInitiate(productId));
@@ -15,7 +15,7 @@ const ProductDetails = () => {
         dispatch(getSingleProductInitiate(productId));
       }
   }, [productId]);
-  console.log(product);
+  console.log(product.title);
   const {product_id,image, title, price, category, description}= product;
   console.log(title);
 const onAddCart =()=>{
