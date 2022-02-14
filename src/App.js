@@ -34,7 +34,7 @@ function App() {
      <Route path="/addproduct" element={<AddProduct />} />
      <Route path="/viewproduct" element={<ViewProduct />} />
      <Route path="/checkout" element={<Checkout />} />
-     <Route path="/product/:productId" element={<ProductDetails />} />
+     <Route path="/:productId" element={<ProductDetails />} />
      <Route path="/login" element={<Login />} />
      <Route path="/register" element={<Register />} />
      <Route> 404 Not Found!</Route>
