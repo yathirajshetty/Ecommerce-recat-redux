@@ -40,6 +40,12 @@ const useReducers = (state = initialState, action) =>{
                     products: action.payload,
                     loading: false,
                 };
+         case types.GET_SINGLEPRODUCT:
+                return{
+                    ...state,
+                    product: action.payload,
+                    loading: false,
+                }; 
         // case types.GET_CATEGORYPRODUCT:
         //         return{
         //             ...state,
